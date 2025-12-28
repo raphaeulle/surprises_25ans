@@ -2,18 +2,154 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Jour 9 💕</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Jour 9 💕 – Memory photos</title>
+  <link href="../css/style.css" rel="stylesheet">
+  <style>
+    #memory-board {
+      display: grid;
+      grid-template-columns: repeat(4, 90px);
+      grid-gap: 10px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .card {
+      width: 90px;
+      height: 90px;
+      background: #f7c1d9;
+      border-radius: 15px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(247,193,217,0.6);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+    .card img {
+      max-width: 100%;
+      max-height: 100%;
+      display: none;
+      border-radius: 10px;
+    }
+    .card.flipped img {
+      display: block;
+    }
+    #message {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    #reset-btn {
+      display: block;
+      margin: 15px auto;
+      padding: 10px 25px;
+      border-radius: 25px;
+      border: none;
+      background: #e8ddff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
 </head>
-
 <body>
 
-  <div class="home-container" id="content"></div>
+<div class="home-container" id="day-content">
+  <h1>✨ Jour 9 – Memory photos ✨</h1>
+  <p>Retourne les cartes et retrouve les paires 💖</p>
 
-  <script src="js/day.js"></script>
-  <script>
-    checkDate(9);
-  </script>
+  <div id="memory-board"></div>
+  <div id="message"></div>
+  <button id="reset-btn">Rejouer 💕</button>
+</div>
+
+<script src="../js/day.js"></script>
+<script>
+  checkDate(9);
+
+  const boardEl = document.getElementById("memory-board");
+  const messageEl = document.getElementById("message");
+  const resetBtn = document.getElementById("reset-btn");
+
+  const images = [
+    "images/memory/img1.jpg",
+    "images/memory/img2.jpg",
+    "images/memory/img3.jpg",
+    "images/memory/img4.jpg",
+    "images/memory/img5.jpg",
+    "images/memory/img6.jpg",
+    "images/memory/img7.jpg",
+    "images/memory/img8.jpg"
+  ];
+
+  let cards = [];
+  let firstCard = null;
+  let secondCard = null;
+  let lock = false;
+  let matches = 0;
+
+  function initMemory() {
+    const pairImages = [...images, ...images]; // 8 paires
+    cards = shuffle(pairImages);
+    firstCard = null;
+    secondCard = null;
+    lock = false;
+    matches = 0;
+    messageEl.innerText = "";
+    renderBoard();
+  }
+
+  function shuffle(array) {
+    return array.sort(() => Math.random() - 0.5);
+  }
+
+  function renderBoard() {
+    boardEl.innerHTML = "";
+    cards.forEach((src, index) => {
+      const card = document.createElement("div");
+      card.className = "card";
+      card.dataset.index = index;
+
+      const img = document.createElement("img");
+      img.src = src;
+      card.appendChild(img);
+
+      card.addEventListener("click", () => flipCard(card));
+      boardEl.appendChild(card);
+    });
+  }
+
+  function flipCard(card) {
+    if(lock || card.classList.contains("flipped")) return;
+    card.classList.add("flipped");
+
+    if(!firstCard) {
+      firstCard = card;
+    } else {
+      secondCard = card;
+      lock = true;
+      setTimeout(checkMatch, 1000);
+    }
+  }
+
+  function checkMatch() {
+    if(firstCard.firstChild.src === secondCard.firstChild.src){
+      matches++;
+      if(matches === images.length){
+        messageEl.innerText = "🎉 Bravo ! Tu as trouvé toutes les paires 💖";
+      }
+    } else {
+      firstCard.classList.remove("flipped");
+      secondCard.classList.remove("flipped");
+    }
+    firstCard = null;
+    secondCard = null;
+    lock = false;
+  }
+
+  resetBtn.addEventListener("click", initMemory);
+
+  initMemory();
+</script>
 
 </body>
 </html>
