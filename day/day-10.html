@@ -2,18 +2,87 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Jour 10 💕</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Jour 10 💕 – Message secret</title>
+  <link href="../css/style.css" rel="stylesheet">
+  <style>
+    .secret-container {
+      text-align: center;
+      margin-top: 50px;
+    }
+    #secret-message {
+      font-size: 22px;
+      color: #6a2c70;
+      font-family: 'Playfair Display', serif;
+      margin-top: 20px;
+      line-height: 1.5;
+      min-height: 60px;
+      white-space: pre-wrap;
+    }
+    #reveal-btn {
+      padding: 15px 35px;
+      background: #f7c1d9;
+      border: none;
+      border-radius: 35px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(247,193,217,0.6);
+      transition: transform 0.3s;
+    }
+    #reveal-btn:hover {
+      transform: scale(1.1);
+    }
+  </style>
 </head>
-
 <body>
 
-  <div class="home-container" id="content"></div>
+<div class="home-container" id="day-content">
+  <h1>✨ Jour 10 – Message secret ✨</h1>
+  <div class="secret-container">
+    <p>Appuie sur le bouton pour découvrir ton petit mot doux 💖</p>
+    <button id="reveal-btn">🔓 Découvrir le message</button>
+    <div id="secret-message"></div>
+  </div>
+</div>
 
-  <script src="js/day.js"></script>
-  <script>
-    checkDate(10);
-  </script>
+<script src="../js/day.js"></script>
+<script>
+  checkDate(10);
+
+  const btn = document.getElementById("reveal-btn");
+  const msgEl = document.getElementById("secret-message");
+
+  // Message avec lettres et emojis
+  const message = "💌 Tu es incroyable, lumineuse et remplie de bonheur 🌸✨";
+
+  btn.addEventListener("click", () => {
+    btn.style.display = "none";
+
+    // Transformer le message en tableau de caractères (support emojis)
+    const letters = Array.from(message);
+    const displayArr = Array(letters.length).fill(" ");
+    msgEl.innerHTML = displayArr.join("");
+
+    // Tableau des indices à révéler
+    let remainingIndices = letters.map((_, i) => i);
+
+    function revealRandomLetter() {
+      if (remainingIndices.length === 0) return;
+
+      const randIdx = Math.floor(Math.random() * remainingIndices.length);
+      const letterPos = remainingIndices[randIdx];
+      remainingIndices.splice(randIdx, 1);
+
+      // Révéler la lettre à sa place
+      displayArr[letterPos] = letters[letterPos];
+      msgEl.innerHTML = displayArr.join("");
+
+      // Prochaine lettre après un délai
+      setTimeout(revealRandomLetter, 500);
+    }
+
+    revealRandomLetter();
+  });
+</script>
 
 </body>
 </html>
