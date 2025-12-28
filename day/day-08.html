@@ -2,18 +2,40 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Jour 8 💕</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Jour 8 💕 – Photo souvenir</title>
+  <link href="../css/style.css" rel="stylesheet">
+  <style>
+    .photo-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .photo-container img {
+      max-width: 90%;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(247,193,217,0.6);
+    }
+    .caption {
+      margin-top: 15px;
+      font-size: 20px;
+      color: #6a2c70;
+      font-family: 'Playfair Display', serif;
+    }
+  </style>
 </head>
-
 <body>
 
-  <div class="home-container" id="content"></div>
+<div class="home-container" id="day-content">
+  <h1>✨ Jour 8 – Photo souvenir ✨</h1>
+  <div class="photo-container">
+    <img src="../images/photo-souvenir.jpg" alt="Photo souvenir">
+    <div class="caption">Un moment figé… mais jamais oublié 💖</div>
+  </div>
+</div>
 
-  <script src="js/day.js"></script>
-  <script>
-    checkDate(8);
-  </script>
+<script src="../js/day.js"></script>
+<script>
+  checkDate(8);
+</script>
 
 </body>
 </html>
