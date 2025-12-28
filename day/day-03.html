@@ -3,16 +3,158 @@
 <head>
   <meta charset="UTF-8">
   <title>Jour 3 💕</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link href="../css/style.css" rel="stylesheet">
+
+  <style>
+    .board {
+      display: grid;
+      grid-template-columns: repeat(3, 90px);
+      gap: 12px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .cell {
+      width: 90px;
+      height: 90px;
+      background: #f7c1d9;
+      border-radius: 20px;
+      font-size: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(247,193,217,0.6);
+      transition: transform 0.2s;
+    }
+
+    .cell:hover {
+      transform: scale(1.05);
+    }
+
+    #game-message {
+      margin-top: 25px;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    #reset-btn {
+      margin-top: 20px;
+      padding: 10px 25px;
+      border-radius: 25px;
+      border: none;
+      background: #e8ddff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
 
-  <div class="home-container" id="content"></div>
+  <div class="home-container" id="day-content">
+    <h1>✨ Jour 3 – Petit jeu ✨</h1>
+    <p>
+      Un mini morpion tout doux 💕<br>
+      Tu joues avec 💖, l’ordi avec ✨
+    </p>
 
-  <script src="js/day.js"></script>
+    <div class="board" id="board"></div>
+
+    <div id="game-message"></div>
+
+    <button id="reset-btn">Rejouer 💫</button>
+  </div>
+
+  <script src="../js/day.js"></script>
   <script>
     checkDate(3);
+
+    const board = document.getElementById("board");
+    const message = document.getElementById("game-message");
+    const resetBtn = document.getElementById("reset-btn");
+
+    let cells = Array(9).fill("");
+    let gameOver = false;
+
+    function renderBoard() {
+      board.innerHTML = "";
+      cells.forEach((value, index) => {
+        const cell = document.createElement("div");
+        cell.className = "cell";
+        cell.innerText = value;
+        cell.addEventListener("click", () => play(index));
+        board.appendChild(cell);
+      });
+    }
+
+    function play(index) {
+      if (cells[index] || gameOver) return;
+
+      cells[index] = "💖";
+      renderBoard();       // 🔥 affichage immédiat
+      checkWinner();
+
+      if (!gameOver) {
+        setTimeout(computerPlay, 400);
+      }
+    }
+
+
+      function computerPlay() {
+      const emptyCells = cells
+        .map((v, i) => (v === "" ? i : null))
+        .filter(v => v !== null);
+
+      if (emptyCells.length === 0) return;
+
+      const randomIndex =
+        emptyCells[Math.floor(Math.random() * emptyCells.length)];
+
+      cells[randomIndex] = "✨";
+      renderBoard();       // 🔥 affichage immédiat
+      checkWinner();
+    }
+
+
+    function checkWinner() {
+      const wins = [
+        [0,1,2],[3,4,5],[6,7,8],
+        [0,3,6],[1,4,7],[2,5,8],
+        [0,4,8],[2,4,6]
+      ];
+
+      for (let combo of wins) {
+        const [a,b,c] = combo;
+        if (
+          cells[a] &&
+          cells[a] === cells[b] &&
+          cells[a] === cells[c]
+        ) {
+          gameOver = true;
+          message.innerText =
+            cells[a] === "💖"
+              ? "Bravo 💕 Tu as gagné !"
+              : "Bien tenté 😄 Rejoue !";
+          return;
+        }
+      }
+
+      if (!cells.includes("")) {
+        gameOver = true;
+        message.innerText = "Match nul 🤍";
+      }
+    }
+
+
+    resetBtn.addEventListener("click", () => {
+      cells = Array(9).fill("");
+      gameOver = false;
+      message.innerText = "";
+      renderBoard();
+    });
+
+    renderBoard();
   </script>
 
 </body>
