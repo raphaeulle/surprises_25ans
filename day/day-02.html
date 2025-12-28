@@ -3,16 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <title>Jour 2 💕</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link href="../css/style.css" rel="stylesheet">
+
+  <style>
+    /* Styles spécifiques Jour 2 */
+    #random-btn {
+      margin-top: 25px;
+      padding: 15px 30px;
+      background: #e8ddff;
+      border: none;
+      border-radius: 30px;
+      font-size: 18px;
+      font-family: 'Playfair Display', serif;
+      color: #6a2c70;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(247,193,217,0.6);
+      transition: transform 0.3s ease;
+    }
+
+    #random-btn:hover {
+      transform: scale(1.1);
+    }
+
+    #random-message {
+      margin-top: 30px;
+      font-size: 20px;
+      text-align: center;
+    }
+  </style>
 </head>
 
 <body>
 
-  <div class="home-container" id="content"></div>
+  <!-- Contenu du jour 2 -->
+  <div class="home-container" id="day-content">
+    <h1>✨ Jour 2 – Clique au hasard ✨</h1>
 
-  <script src="js/day.js"></script>
+    <p>
+      Clique sur le bouton sans trop réfléchir.<br>
+      Chaque clic révèle un petit message rien que pour toi 💖
+    </p>
+
+    <button id="random-btn">Clique ici ✨</button>
+
+    <div id="random-message"></div>
+  </div>
+
+  <script src="../js/day.js"></script>
   <script>
     checkDate(2);
+
+    const messages = [
+      "Aujourd’hui, tu as le droit de ne rien faire ✨",
+      "Tu es pile là où tu dois être 💖",
+      "Petit rappel : tu gères mieux que tu ne le penses 😄",
+      "Souris. Oui, maintenant 😊",
+      "RAPPEL : Bois de l'eau ! 💧",
+      "Aujourd’hui, tu as le droit de ralentir 🌸",
+      "Petit rappel : tu es incroyable sans effort 💖",
+      "Tu mérites toutes les bonnes choses qui arrivent",
+      "Respire. Tout va bien se passer 🌷",
+      "Ton sourire change plus de choses que tu ne le crois 😊",
+      "Tu es exactement là où tu dois être",
+      "Spoiler : la suite est encore meilleure 😌",
+      "Tu illumines les journées des autres ✨",
+      "Autorise-toi à être fière de toi 💪💖",
+      "Même les petits pas comptent 🌱",
+      "Tu es douce, forte et unique",
+      "Tu es plus aimée que tu ne l’imagines 🌸",
+      "Ceci est un rappel pour boire un peu d’eau 💧",
+      "Aujourd’hui est une bonne journée pour toi",
+      "Tu fais de ton mieux, et c’est déjà énorme 💕",
+      "Ton rire est contagieux 😄",
+      "Tu n’as rien à prouver à personne",
+      "Ce message est un câlin virtuel 🤍",
+    ];
+
+    document.getElementById("random-btn").addEventListener("click", () => {
+      const msg = messages[Math.floor(Math.random() * messages.length)];
+      document.getElementById("random-message").innerText = msg;
+    });
   </script>
 
 </body>
