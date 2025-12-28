@@ -2,18 +2,68 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Jour 7 💕</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Jour 7 💕 – Vidéo</title>
+  <link href="../css/style.css" rel="stylesheet">
+  <style>
+    .video-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+    video {
+      max-width: 90%;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(247,193,217,0.6);
+    }
+    .caption {
+      margin-top: 15px;
+      font-size: 20px;
+      color: #6a2c70;
+      font-family: 'Playfair Display', serif;
+    }
+    #play-btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      border-radius: 25px;
+      border: none;
+      background: #f7c1d9;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(247,193,217,0.6);
+    }
+    #play-btn:hover {
+      transform: scale(1.05);
+      transition: transform 0.2s;
+    }
+  </style>
 </head>
-
 <body>
 
-  <div class="home-container" id="content"></div>
+<div class="home-container" id="day-content">
+  <h1>✨ Jour 7 – Vidéo ✨</h1>
+  <div class="video-container">
+    <video id="video" src="../videos/video-jour7.mp4" width="640" controls></video>
+    <div class="caption">Un petit moment pour te faire sourire 💖</div>
+    <button id="play-btn">▶️ Jouer / Pause</button>
+  </div>
+</div>
 
-  <script src="js/day.js"></script>
-  <script>
-    checkDate(7);
-  </script>
+<script src="../js/day.js"></script>
+<script>
+  checkDate(7);
+
+  const video = document.getElementById("video");
+  const btn = document.getElementById("play-btn");
+
+  btn.addEventListener("click", () => {
+    if(video.paused) {
+      video.play();
+      btn.innerText = "⏸ Pause";
+    } else {
+      video.pause();
+      btn.innerText = "▶️ Jouer";
+    }
+  });
+</script>
 
 </body>
 </html>
