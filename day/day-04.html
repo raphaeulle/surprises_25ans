@@ -3,16 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <title>Jour 4 💕</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link href="../css/style.css" rel="stylesheet">
+
+  <style>
+    #music-btn {
+      margin-top: 25px;
+      padding: 15px 35px;
+      background: #f7c1d9;
+      border: none;
+      border-radius: 35px;
+      font-size: 18px;
+      font-family: 'Playfair Display', serif;
+      color: #6a2c70;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(247,193,217,0.6);
+      transition: transform 0.3s;
+    }
+
+    #music-btn:hover {
+      transform: scale(1.1);
+    }
+
+    #music-text {
+      margin-top: 25px;
+      font-size: 20px;
+      text-align: center;
+      line-height: 1.5;
+    }
+  </style>
 </head>
 
 <body>
 
-  <div class="home-container" id="content"></div>
+  <div class="home-container" id="day-content">
+    <h1>✨ Jour 4 – Une musique ✨</h1>
 
-  <script src="js/day.js"></script>
+    <p>
+      Cette musique est pour toi.<br>
+      Mets un casque, respire, et profite 💕
+    </p>
+
+    <button id="music-btn">▶ Lancer la musique</button>
+
+    <p id="music-text"></p>
+
+    <audio id="audio" src="../audio/day4.mp3"></audio>
+  </div>
+
+  <script src="../js/day.js"></script>
   <script>
     checkDate(4);
+
+    const audio = document.getElementById("audio");
+    const button = document.getElementById("music-btn");
+    const text = document.getElementById("music-text");
+
+    let playing = false;
+
+    button.addEventListener("click", () => {
+      if (!playing) {
+        audio.play();
+        button.innerText = "⏸ Pause";
+        text.innerText = "Ferme les yeux quelques secondes ✨";
+      } else {
+        audio.pause();
+        button.innerText = "▶ Lancer la musique";
+        text.innerText = "";
+      }
+      playing = !playing;
+    });
   </script>
 
 </body>
