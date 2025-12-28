@@ -3,16 +3,117 @@
 <head>
   <meta charset="UTF-8">
   <title>Jour 5 💕</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link href="../css/style.css" rel="stylesheet">
+
+  <style>
+    #game-area {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      margin: 30px auto;
+      background: #fff0f6;
+      border-radius: 25px;
+      box-shadow: 0 10px 25px rgba(247,193,217,0.6);
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 32px;
+      cursor: pointer;
+      animation: pop 3s linear forwards;
+    }
+
+    @keyframes pop {
+      0%   { transform: scale(0.5); opacity: 0; }
+      30%  { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(0.3); opacity: 0; }
+    }
+
+    #score {
+      font-size: 20px;
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    #start-btn {
+      margin-top: 20px;
+      padding: 12px 30px;
+      border-radius: 25px;
+      border: none;
+      background: #f7c1d9;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
 
-  <div class="home-container" id="content"></div>
+  <div class="home-container" id="day-content">
+    <h1>✨ Jour 5 – Attrape les cœurs ✨</h1>
 
-  <script src="js/day.js"></script>
+    <p>
+      Clique sur les cœurs 💖 avant qu’ils disparaissent !<br>
+      Combien peux-tu en attraper ?
+    </p>
+
+    <button id="start-btn">Commencer 💕</button>
+
+    <div id="game-area"></div>
+
+    <div id="score">Score : 0</div>
+  </div>
+
+  <script src="../js/day.js"></script>
   <script>
     checkDate(5);
+
+    const area = document.getElementById("game-area");
+    const scoreDisplay = document.getElementById("score");
+    const startBtn = document.getElementById("start-btn");
+
+    let score = 0;
+    let interval = null;
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "💖";
+
+      const x = Math.random() * 280;
+      const y = Math.random() * 280;
+
+      heart.style.left = x + "px";
+      heart.style.top = y + "px";
+
+      heart.addEventListener("click", () => {
+        score++;
+        scoreDisplay.innerText = "Score : " + score;
+        heart.remove();
+      });
+
+      area.appendChild(heart);
+
+      setTimeout(() => {
+        if (heart.parentNode) heart.remove();
+      }, 1800);
+    }
+
+    startBtn.addEventListener("click", () => {
+      score = 0;
+      scoreDisplay.innerText = "Score : 0";
+      area.innerHTML = "";
+
+      if (interval) clearInterval(interval);
+
+      interval = setInterval(createHeart, 1500);
+
+      setTimeout(() => {
+        clearInterval(interval);
+        alert("🎉 Temps écoulé ! Score final : " + score + " 💖");
+      }, 30000);
+    });
   </script>
 
 </body>
