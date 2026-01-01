@@ -34,12 +34,14 @@ p {
 
 .home-container {
   background: #fff6fb;
-  padding: 50px;
+  padding: clamp(20px, 5vw, 40px);
   border-radius: 30px;
   text-align: center;
   box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-  max-width: 500px;
+  max-width: min(90vw, 480px);
+  margin: auto;
 }
+
 
 .home h1 {
   font-family: 'Lexend', serif;
@@ -71,13 +73,13 @@ p {
 /* CASES */
 .day {
   position: absolute;
-  width: 90px;
-  height: 90px;
+  width: clamp(65px, 18vw, 90px);
+  height: clamp(65px, 18vw, 90px);
+  line-height: clamp(65px, 18vw, 90px);
+  font-size: clamp(18px, 5vw, 26px);
   border-radius: 50%;
   background: linear-gradient(145deg, #e8ddff, #fff);
   text-align: center;
-  line-height: 90px;
-  font-size: 26px;
   font-family: 'Lexend', serif;
   color: #6a2c70;
   text-decoration: none;
