@@ -10,6 +10,8 @@ body {
   font-family: 'Lexend', Arial, sans-serif;
   letter-spacing: 0.03em;
   line-height: 1.6;
+  background: radial-gradient(circle, #ffc8b7, #ff8ccb);
+  color: #823988;
 }
 
 * {
