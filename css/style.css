@@ -156,37 +156,48 @@ p {
 }
 
 /* RESPONSIVE */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
+
+  /* toile devient une liste */
   .web {
     height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 35px;
+    gap: 22px;
+    padding: 40px 0;
   }
 
+  /* on enlève les positions absolues */
   .day {
     position: relative;
+    inset: auto;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
+    font-size: 28px;
+    animation: none;
   }
 
+  /* fil plus court */
   .day::before {
-    height: 30px;
-    top: -30px;
+    height: 24px;
+    top: -24px;
   }
 
-  @media (max-width: 420px) {
-
+  /* titres plus grands */
   h1 {
-    font-size: 1.6rem;
+    font-size: 1.9rem;
   }
 
   p {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
-  .calendar h1 {
-    margin: 25px 0;
+  /* conteneur blanc */
+  .home-container {
+    max-width: 92vw;
+    padding: 28px;
   }
-}
 
 }
