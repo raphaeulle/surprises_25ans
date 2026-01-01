@@ -212,3 +212,38 @@ p {
     font-size: 2rem;
   }
 }*/
+
+@media screen and (max-width: 480px) {
+  .web {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 👈 CENTRÉ */
+    justify-content: center; /* facultatif */
+    gap: 20px;
+    padding: 40px 0;
+    position: relative;
+  }
+
+  .day {
+    position: relative !important; /* 🟢 plus d'absolu */
+    top: auto !important;
+    left: auto !important;
+
+    width: 120px;
+    height: 120px;
+    line-height: 120px;
+    font-size: 32px;
+    animation: none;
+  }
+
+  .day::before {
+    display: none; /* on enlève les fils sur mobile */
+  }
+
+  .home-container {
+    max-width: 92vw;
+    padding: 28px;
+  }
+}
+
