@@ -1,11 +1,25 @@
 /* GLOBAL */
-body {
+/*body {
   margin: 0;
-  /*font-family: 'Poppins', sans-serif;*/
-  font-family: Comic;
+  font-family: 'Poppins', sans-serif;
   background: radial-gradient(circle, #fff6fb, #f7c1d9);
   color: #6a2c70;
+}*/
+
+body {
+  font-family: 'Lexend', Arial, sans-serif;
+  letter-spacing: 0.03em;
+  line-height: 1.6;
 }
+
+* {
+  font-kerning: normal;
+}
+
+p {
+  max-width: 60ch;
+}
+
 
 /* ACCUEIL */
 .home {
