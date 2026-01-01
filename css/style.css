@@ -1,7 +1,8 @@
 /* GLOBAL */
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  /*font-family: 'Poppins', sans-serif;*/
+  font-family: Comic;
   background: radial-gradient(circle, #fff6fb, #f7c1d9);
   color: #6a2c70;
 }
