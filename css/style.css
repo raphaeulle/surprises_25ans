@@ -42,7 +42,7 @@ p {
 }
 
 .home h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Lexend', serif;
 }
 
 .start-button {
@@ -60,7 +60,7 @@ p {
 .calendar h1 {
   text-align: center;
   margin: 40px 0;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Lexend', serif;
 }
 
 .web {
@@ -78,7 +78,7 @@ p {
   text-align: center;
   line-height: 90px;
   font-size: 26px;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Lexend', serif;
   color: #6a2c70;
   text-decoration: none;
   box-shadow: 0 10px 25px rgba(247,193,217,0.6);
