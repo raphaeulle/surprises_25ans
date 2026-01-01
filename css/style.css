@@ -103,7 +103,7 @@ p {
   content: "";
   position: absolute;
   width: 2px;
-  height: 100px;
+  height: clamp(40px, 10vw, 120px);
   background: rgb(226, 197, 139);
   top: -120px;
   left: 50%;
@@ -173,4 +173,20 @@ p {
     height: 30px;
     top: -30px;
   }
+
+  @media (max-width: 420px) {
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .calendar h1 {
+    margin: 25px 0;
+  }
+}
+
 }
