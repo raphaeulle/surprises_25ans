@@ -2,18 +2,70 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Jour 11 💕</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>Jour 11 💕 – Musique</title>
+  <link href="../css/style.css" rel="stylesheet">
+  <style>
+    .music-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+    audio {
+      width: 90%;
+      max-width: 500px;
+      margin-top: 15px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(247,193,217,0.6);
+    }
+    #play-btn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      border-radius: 25px;
+      border: none;
+      background: #f7c1d9;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(247,193,217,0.6);
+      transition: transform 0.2s;
+    }
+    #play-btn:hover {
+      transform: scale(1.05);
+    }
+    .caption {
+      margin-top: 15px;
+      font-size: 20px;
+      color: #6a2c70;
+      font-family: 'Playfair Display', serif;
+    }
+  </style>
 </head>
-
 <body>
 
-  <div class="home-container" id="content"></div>
+<div class="home-container" id="day-content">
+  <h1>✨ Jour 11 – Musique ✨</h1>
+  <div class="music-container">
+    <audio id="audio" src="../audio/musique-jour11.mp3"></audio>
+    <div class="caption">Un petit moment musical pour illuminer ta journée 💖</div>
+    <button id="play-btn">▶️ Jouer / Pause</button>
+  </div>
+</div>
 
-  <script src="js/day.js"></script>
-  <script>
-    checkDate(11);
-  </script>
+<script src="../js/day.js"></script>
+<script>
+  checkDate(11);
+
+  const audio = document.getElementById("audio");
+  const btn = document.getElementById("play-btn");
+
+  btn.addEventListener("click", () => {
+    if(audio.paused){
+      audio.play();
+      btn.innerText = "⏸ Pause";
+    } else {
+      audio.pause();
+      btn.innerText = "▶️ Jouer";
+    }
+  });
+</script>
 
 </body>
 </html>
