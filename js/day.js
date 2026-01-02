@@ -5,8 +5,8 @@ function checkDate(day) {
 
   const content = document.getElementById("day-content");
 
-  // if (currentMonth !== 0 || currentDay !== day) {
-  if (false) {  // ignore la date pour tester
+  if (currentMonth !==0 || currentDay < day) {
+  //if (false) {  // ignore la date pour tester
     // On supprime le contenu du jour
     content.style.display = "none";
 
@@ -22,3 +22,4 @@ function checkDate(day) {
     document.body.appendChild(locked);
   }
 }
+
